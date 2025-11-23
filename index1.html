@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Jagajjanani Events - Premium Event Management & Decoration Services for Birthdays, Weddings, Corporate Events & More">
+    <meta name="keywords" content="event management, wedding planner, birthday decoration, corporate events">
+    <title>Jagajjanani Events - Premium Event Management</title>
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="#" class="nav-logo">
+                <!-- <img src="images/logo.png" alt="Jagajjanani Events Logo" class="logo-img" /> -->
+                <span>Jagajjanani Events</span>
+            </a>
+
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#services" class="nav-link">Services</a></li>
+                    <li><a href="#packages" class="nav-link">Packages</a></li>
+                    <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                    <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-actions">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <span class="theme-icon">🌙</span>
+                </button>
+                <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+                    <span class="nav-toggle-icon"></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-overlay"></div>
+        <div class="hero-content container">
+            <h1 class="hero-title">Creating Unforgettable Moments</h1>
+            <p class="hero-subtitle">Professional Event Planning & Premium Decoration Services</p>
+            <div class="hero-buttons">
+                <a href="#packages" class="btn btn-primary">Explore Packages</a>
+                <a href="#contact" class="btn btn-secondary">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services section" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Services</h2>
+                <p class="section-description">Comprehensive event solutions tailored to your needs</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="images/decoration.jpg" alt="Decoration & Themes" class="service-img">
+                    </div>
+                    <h3 class="service-title">Decoration & Themes</h3>
+                    <p class="service-description">Stunning themed decorations that transform your venue into a magical
+                        space with personalized touches.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-image">
+                        <div class="service-img-placeholder"
+                            style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">🏛️</div>
+                    </div>
+                    <h3 class="service-title">Venue Management</h3>
+                    <p class="service-description">Expert venue selection and complete management to ensure your event
+                        runs seamlessly from start to finish.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-image">
+                        <div class="service-img-placeholder"
+                            style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">📸</div>
+                    </div>
+                    <h3 class="service-title">Photography & Videography</h3>
+                    <p class="service-description">Professional photographers capturing every precious moment with
+                        cinematic quality and artistic excellence.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-image">
+                        <div class="service-img-placeholder"
+                            style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">🍽️</div>
+                    </div>
+                    <h3 class="service-title">Catering Services</h3>
+                    <p class="service-description">Delicious multi-cuisine catering with customizable menus to delight
+                        your guests' taste buds.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section class="packages section" id="packages">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Event Packages</h2>
+                <p class="section-description">Choose the perfect package for your celebration</p>
+            </div>
+
+            <div class="packages-grid">
+                <div class="package-card">
+                    <div class="package-badge">Popular</div>
+                    <div class="package-icon">🥈</div>
+                    <h3 class="package-title">Silver Package</h3>
+                    <p class="package-description">Perfect for intimate gatherings and small celebrations with essential
+                        services.</p>
+                    <button class="btn btn-outline" onclick="openPackageModal('silver')">View Details</button>
+                </div>
+
+                <div class="package-card package-featured">
+                    <div class="package-badge">Best Value</div>
+                    <div class="package-icon">🥇</div>
+                    <h3 class="package-title">Gold Package</h3>
+                    <p class="package-description">Comprehensive event planning with premium decoration and professional
+                        services.</p>
+                    <button class="btn btn-primary" onclick="openPackageModal('gold')">View Details</button>
+                </div>
+
+                <div class="package-card">
+                    <div class="package-badge">Premium</div>
+                    <div class="package-icon">💎</div>
+                    <h3 class="package-title">Platinum Package</h3>
+                    <p class="package-description">Luxury all-inclusive experience with exclusive amenities and VIP
+                        treatment.</p>
+                    <button class="btn btn-outline" onclick="openPackageModal('platinum')">View Details</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery section" id="gallery">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Event Gallery</h2>
+                <p class="section-description">Glimpses of our beautifully crafted events</p>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openLightbox(0)">
+                    <div class="gallery-img" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <span class="gallery-icon">🎂</span>
+                    </div>
+                    <div class="gallery-overlay">
+                        <span class="gallery-text">Birthday Celebration</span>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(1)">
+                    <div class="gallery-img" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                        <span class="gallery-icon">💐</span>
+                    </div>
+                    <div class="gallery-overlay">
+                        <span class="gallery-text">Wedding Decoration</span>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(2)">
+                    <div class="gallery-img" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                        <span class="gallery-icon">🎉</span>
+                    </div>
+                    <div class="gallery-overlay">
+                        <span class="gallery-text">Corporate Event</span>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(3)">
+                    <div class="gallery-img" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                        <span class="gallery-icon">👶</span>
+                    </div>
+                    <div class="gallery-overlay">
+                        <span class="gallery-text">Baby Shower</span>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(4)">
+                    <div class="gallery-img" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+                        <span class="gallery-icon">💍</span>
+                    </div>
+                    <div class="gallery-overlay">
+                        <span class="gallery-text">Anniversary</span>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(5)">
+                    <div class="gallery-img" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);">
+                        <span class="gallery-icon">🏠</span>
+                    </div>
+                    <div class="gallery-overlay">
+                        <span class="gallery-text">House Warming</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials section" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Client Testimonials</h2>
+                <p class="section-description">What our happy clients say about us</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text">Jagajjanani Events made our wedding absolutely magical! The attention to
+                        detail and personalized service exceeded all our expectations. Highly recommended!</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">R</div>
+                        <div class="author-info">
+                            <h4 class="author-name">Rajesh & Priya</h4>
+                            <p class="author-event">Wedding Ceremony</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text">Outstanding service for our daughter's first birthday! The theme
+                        decoration was stunning and the team was incredibly professional throughout the event.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">S</div>
+                        <div class="author-info">
+                            <h4 class="author-name">Sanjay Kumar</h4>
+                            <p class="author-event">Birthday Party</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-text">Professional, creative, and reliable! They handled our corporate event
+                        flawlessly and received compliments from all our guests. Will definitely work with them again.
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">M</div>
+                        <div class="author-info">
+                            <h4 class="author-name">Meena Sharma</h4>
+                            <p class="author-event">Corporate Event</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact section" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-description">Let's plan your perfect event together</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">📞</div>
+                    <h3 class="contact-title">Phone</h3>
+                    <p class="contact-info">+91 7892631101</p>
+                    <!-- <p class="contact-info">+91 98765 43211</p> -->
+                    <a href="tel:+919876543210" class="btn btn-small">Call Now</a>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">📧</div>
+                    <h3 class="contact-title">Email</h3>
+                    <p class="contact-info">siddeshmoghavera@gmail.com</p>
+                    <!-- <p class="contact-info">events@jagajjanani.com</p> -->
+                    <a href="mailto:info@jagajjanani.com" class="btn btn-small">Email Us</a>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">📍</div>
+                    <h3 class="contact-title">Location</h3>
+                    <p class="contact-info">Kundapura, Karnataka</p>
+                    <p class="contact-info">India - 576201</p>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">🕒</div>
+                    <h3 class="contact-title">Working Hours</h3>
+                    <p class="contact-info">Mon - Sat: 9:00 AM - 8:00 PM</p>
+                    <p class="contact-info">Sunday: 10:00 AM - 6:00 PM</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">© <span id="year"></span> Jagajjanani Events. All rights reserved. Crafted with 💙siddu
+            </p>
+        </div>
+    </footer>
+
+    <!-- Package Modal -->
+    <div class="modal" id="package-modal">
+        <div class="modal-overlay" onclick="closePackageModal()"></div>
+        <div class="modal-content">
+            <button class="modal-close" onclick="closePackageModal()">×</button>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()">×</button>
+        <button class="lightbox-prev" onclick="changeLightboxImage(-1)">‹</button>
+        <button class="lightbox-next" onclick="changeLightboxImage(1)">›</button>
+        <div class="lightbox-content" id="lightbox-content"></div>
+    </div>
+    <script src="js/scripts.js" defer></script>
+</body>
+
+</html>
