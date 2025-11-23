@@ -1,4 +1,6 @@
-/* CSS Styles */
+/* ===================================
+   CSS Variables & Reset
+   =================================== */
 * {
     margin: 0;
     padding: 0;
@@ -43,7 +45,9 @@ body {
     padding: 0 20px;
 }
 
-/* Header */
+/* ===================================
+   Header & Navigation
+   =================================== */
 .header {
     position: fixed;
     top: 0;
@@ -75,6 +79,12 @@ body {
     font-weight: bold;
     color: var(--text-color);
     text-decoration: none;
+}
+
+.logo-img {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
 }
 
 .logo-icon {
@@ -165,7 +175,9 @@ body {
     display: block;
 }
 
-/* Hero Section */
+/* ===================================
+   Hero Section
+   =================================== */
 .hero {
     position: relative;
     height: 100vh;
@@ -191,7 +203,6 @@ body {
     from {
         transform: translateY(0);
     }
-
     to {
         transform: translateY(-100px);
     }
@@ -241,14 +252,15 @@ body {
         opacity: 0;
         transform: translateY(30px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-/* Buttons */
+/* ===================================
+   Buttons
+   =================================== */
 .btn {
     padding: 0.875rem 2rem;
     border-radius: 50px;
@@ -297,7 +309,9 @@ body {
     font-size: 0.9rem;
 }
 
-/* Section */
+/* ===================================
+   Section Styles
+   =================================== */
 .section {
     padding: 5rem 0;
 }
@@ -322,7 +336,9 @@ body {
     font-size: 1.1rem;
 }
 
-/* Services Grid */
+/* ===================================
+   Services Section
+   =================================== */
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -345,6 +361,20 @@ body {
 
 .service-image {
     margin-bottom: 1.5rem;
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+.service-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: var(--transition);
+}
+
+.service-card:hover .service-img {
+    transform: scale(1.1);
 }
 
 .service-img-placeholder {
@@ -368,7 +398,9 @@ body {
     line-height: 1.6;
 }
 
-/* Packages */
+/* ===================================
+   Packages Section
+   =================================== */
 .packages {
     background: var(--surface-color);
 }
@@ -429,7 +461,9 @@ body {
     line-height: 1.6;
 }
 
-/* Gallery */
+/* ===================================
+   Gallery Section
+   =================================== */
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -442,6 +476,22 @@ body {
     overflow: hidden;
     cursor: pointer;
     aspect-ratio: 1;
+}
+
+.gallery-image {
+    width: 100%;
+    height: 100%;
+}
+
+.gallery-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.gallery-item:hover .gallery-image img {
+    transform: scale(1.1);
 }
 
 .gallery-img {
@@ -479,7 +529,9 @@ body {
     font-size: 1.1rem;
 }
 
-/* Testimonials */
+/* ===================================
+   Testimonials Section
+   =================================== */
 .testimonials {
     background: var(--surface-color);
 }
@@ -534,6 +586,7 @@ body {
     justify-content: center;
     font-weight: bold;
     font-size: 1.5rem;
+    flex-shrink: 0;
 }
 
 .author-name {
@@ -546,7 +599,9 @@ body {
     font-size: 0.9rem;
 }
 
-/* Contact */
+/* ===================================
+   Contact Section
+   =================================== */
 .contact-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -587,7 +642,9 @@ body {
     margin-top: 1rem;
 }
 
-/* Footer */
+/* ===================================
+   Footer
+   =================================== */
 .footer {
     background: var(--surface-color);
     padding: 2rem 0;
@@ -599,7 +656,9 @@ body {
     color: var(--text-secondary);
 }
 
-/* Modal */
+/* ===================================
+   Modal
+   =================================== */
 .modal {
     display: none;
     position: fixed;
@@ -642,7 +701,6 @@ body {
     from {
         opacity: 0;
     }
-
     to {
         opacity: 1;
     }
@@ -653,7 +711,6 @@ body {
         opacity: 0;
         transform: translateY(50px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
@@ -712,7 +769,9 @@ body {
     border-bottom: none;
 }
 
-/* Lightbox */
+/* ===================================
+   Lightbox
+   =================================== */
 .lightbox {
     display: none;
     position: fixed;
@@ -739,12 +798,18 @@ body {
     animation: zoomIn 0.3s ease;
 }
 
+.lightbox-content img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    max-height: 90vh;
+}
+
 @keyframes zoomIn {
     from {
         opacity: 0;
         transform: scale(0.8);
     }
-
     to {
         opacity: 1;
         transform: scale(1);
@@ -802,7 +867,9 @@ body {
     transform: translateY(-50%) scale(1.1);
 }
 
-/* Responsive */
+/* ===================================
+   Responsive Design
+   =================================== */
 @media (max-width: 768px) {
     .nav-menu {
         position: fixed;
@@ -888,5 +955,13 @@ body {
 
     .btn {
         width: 100%;
+    }
+
+    .section {
+        padding: 3rem 0;
+    }
+
+    .section-title {
+        font-size: 1.75rem;
     }
 }
