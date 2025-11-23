@@ -1,23 +1,28 @@
-// Theme Toggle
+// ===================================
+// Theme Toggle Functionality
+// ===================================
 const themeToggle = document.getElementById('theme-toggle');
 const themeIcon = themeToggle.querySelector('.theme-icon');
 const html = document.documentElement;
 
-// Check for saved theme
+// Check for saved theme preference or default to 'light'
 const savedTheme = localStorage.getItem('theme') || 'light';
 html.setAttribute('data-theme', savedTheme);
 themeIcon.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
 
+// Toggle theme on button click
 themeToggle.addEventListener('click', () => {
     const currentTheme = html.getAttribute('data-theme');
     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-
+    
     html.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
     themeIcon.textContent = newTheme === 'dark' ? '☀️' : '🌙';
 });
 
+// ===================================
 // Mobile Navigation Toggle
+// ===================================
 const navToggle = document.getElementById('nav-toggle');
 const navMenu = document.getElementById('nav-menu');
 
@@ -32,11 +37,21 @@ document.querySelectorAll('.nav-link').forEach(link => {
     });
 });
 
-// Smooth Scrolling
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+    if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
+        navMenu.classList.remove('active');
+    }
+});
+
+// ===================================
+// Smooth Scrolling for Anchor Links
+// ===================================
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
+    anchor.addEventListener('click', function(e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
+        
         if (target) {
             const headerOffset = 80;
             const elementPosition = target.getBoundingClientRect().top;
@@ -50,17 +65,28 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+// ===================================
 // Header Scroll Effect
+// ===================================
 const header = document.getElementById('header');
+let lastScroll = 0;
+
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) {
+    const currentScroll = window.pageYOffset;
+    
+    // Shrink header on scroll
+    if (currentScroll > 100) {
         header.style.padding = '0.5rem 0';
     } else {
         header.style.padding = '1rem 0';
     }
+    
+    lastScroll = currentScroll;
 });
 
-// Package Modal
+// ===================================
+// Package Modal Functionality
+// ===================================
 const packageData = {
     silver: {
         title: '🥈 Silver Package',
@@ -121,17 +147,22 @@ function openPackageModal(packageType) {
     const modalBody = document.getElementById('modal-body');
     const pkg = packageData[packageType];
 
+    if (!pkg) {
+        console.error('Package not found:', packageType);
+        return;
+    }
+
     modalBody.innerHTML = `
-                <h2 class="modal-title">${pkg.title}</h2>
-                <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 1.1rem;">${pkg.description}</p>
-                <h3 style="margin-bottom: 1rem; color: var(--text-color);">Package Includes:</h3>
-                <ul class="modal-features">
-                    ${pkg.features.map(feature => `<li>${feature}</li>`).join('')}
-                </ul>
-                <div style="margin-top: 2rem; text-align: center;">
-                    <a href="#contact" class="btn btn-primary" onclick="closePackageModal()">Get Quote</a>
-                </div>
-            `;
+        <h2 class="modal-title">${pkg.title}</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 1.1rem;">${pkg.description}</p>
+        <h3 style="margin-bottom: 1rem; color: var(--text-color);">Package Includes:</h3>
+        <ul class="modal-features">
+            ${pkg.features.map(feature => `<li>${feature}</li>`).join('')}
+        </ul>
+        <div style="margin-top: 2rem; text-align: center;">
+            <a href="#contact" class="btn btn-primary" onclick="closePackageModal()">Get Quote</a>
+        </div>
+    `;
 
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -143,14 +174,16 @@ function closePackageModal() {
     document.body.style.overflow = 'auto';
 }
 
-// Gallery Lightbox
+// ===================================
+// Gallery Lightbox Functionality
+// ===================================
 const galleryImages = [
-    { bg: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', icon: '🎂', title: 'Birthday Celebration' },
-    { bg: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)', icon: '💐', title: 'Wedding Decoration' },
-    { bg: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)', icon: '🎉', title: 'Corporate Event' },
-    { bg: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)', icon: '👶', title: 'Baby Shower' },
-    { bg: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)', icon: '💍', title: 'Anniversary' },
-    { bg: 'linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)', icon: '🏠', title: 'House Warming' }
+    { src: 'images/decoration.jpg', alt: 'Birthday Celebration' },
+    { src: 'images/decoration.jpg', alt: 'Wedding Decoration' },
+    { src: 'images/decoration.jpg', alt: 'Corporate Event' },
+    { src: 'images/decoration.jpg', alt: 'Baby Shower' },
+    { src: 'images/decoration.jpg', alt: 'Anniversary' },
+    { src: 'images/decoration.jpg', alt: 'House Warming' }
 ];
 
 let currentImageIndex = 0;
@@ -162,11 +195,8 @@ function openLightbox(index) {
     const img = galleryImages[index];
 
     lightboxContent.innerHTML = `
-                <div style="background: ${img.bg}; width: 800px; max-width: 100%; height: 600px; max-height: 80vh; border-radius: 15px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white;">
-                    <div style="font-size: 8rem; margin-bottom: 1rem;">${img.icon}</div>
-                    <div style="font-size: 2rem; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">${img.title}</div>
-                </div>
-            `;
+        <img src="${img.src}" alt="${img.alt}" style="max-width: 100%; max-height: 90vh; border-radius: 15px;">
+    `;
 
     lightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -180,27 +210,54 @@ function closeLightbox() {
 
 function changeLightboxImage(direction) {
     currentImageIndex += direction;
-    if (currentImageIndex < 0) currentImageIndex = galleryImages.length - 1;
-    if (currentImageIndex >= galleryImages.length) currentImageIndex = 0;
+    
+    // Loop back to start/end
+    if (currentImageIndex < 0) {
+        currentImageIndex = galleryImages.length - 1;
+    }
+    if (currentImageIndex >= galleryImages.length) {
+        currentImageIndex = 0;
+    }
+    
     openLightbox(currentImageIndex);
 }
 
-// Close lightbox on escape key
+// ===================================
+// Keyboard Navigation
+// ===================================
 document.addEventListener('keydown', (e) => {
+    const lightbox = document.getElementById('lightbox');
+    const modal = document.getElementById('package-modal');
+    
+    // Close on Escape key
     if (e.key === 'Escape') {
-        closeLightbox();
-        closePackageModal();
+        if (lightbox.classList.contains('active')) {
+            closeLightbox();
+        }
+        if (modal.classList.contains('active')) {
+            closePackageModal();
+        }
     }
-    if (document.getElementById('lightbox').classList.contains('active')) {
-        if (e.key === 'ArrowLeft') changeLightboxImage(-1);
-        if (e.key === 'ArrowRight') changeLightboxImage(1);
+    
+    // Navigate lightbox with arrow keys
+    if (lightbox.classList.contains('active')) {
+        if (e.key === 'ArrowLeft') {
+            changeLightboxImage(-1);
+        }
+        if (e.key === 'ArrowRight') {
+            changeLightboxImage(1);
+        }
     }
 });
 
+// ===================================
 // Update Year in Footer
+// ===================================
 document.getElementById('year').textContent = new Date().getFullYear();
 
+// ===================================
 // Scroll Reveal Animation
+// ===================================
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -215,10 +272,116 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Observe elements
-document.querySelectorAll('.service-card, .package-card, .gallery-item, .testimonial-card, .contact-card').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(el);
+// Observe elements for scroll animation
+document.addEventListener('DOMContentLoaded', () => {
+    const animatedElements = document.querySelectorAll(
+        '.service-card, .package-card, .gallery-item, .testimonial-card, .contact-card'
+    );
+    
+    animatedElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
 });
+
+// ===================================
+// Preload Images (Optional Enhancement)
+// ===================================
+function preloadImages() {
+    galleryImages.forEach(img => {
+        const image = new Image();
+        image.src = img.src;
+    });
+}
+
+// Call preload when page loads
+window.addEventListener('load', preloadImages);
+
+// ===================================
+// Active Navigation Link Highlight
+// ===================================
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+
+function highlightNavigation() {
+    const scrollPosition = window.pageYOffset + 100;
+
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        const sectionId = section.getAttribute('id');
+
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${sectionId}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    });
+}
+
+window.addEventListener('scroll', highlightNavigation);
+
+// ===================================
+// Back to Top Button (Optional)
+// ===================================
+function createBackToTop() {
+    const button = document.createElement('button');
+    button.innerHTML = '↑';
+    button.className = 'back-to-top';
+    button.style.cssText = `
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        color: white;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity 0.3s, transform 0.3s;
+        z-index: 999;
+        box-shadow: var(--shadow-lg);
+    `;
+
+    button.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    document.body.appendChild(button);
+
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            button.style.opacity = '1';
+            button.style.transform = 'scale(1)';
+        } else {
+            button.style.opacity = '0';
+            button.style.transform = 'scale(0.8)';
+        }
+    });
+
+    button.addEventListener('mouseenter', () => {
+        button.style.transform = 'scale(1.1)';
+    });
+
+    button.addEventListener('mouseleave', () => {
+        button.style.transform = 'scale(1)';
+    });
+}
+
+// Initialize back to top button
+window.addEventListener('load', createBackToTop);
+
+// ===================================
+// Console Welcome Message
+// ===================================
+console.log('%c🎉 Jagajjanani Events', 'color: #667eea; font-size: 24px; font-weight: bold;');
+console.log('%cWebsite developed with ❤️', 'color: #764ba2; font-size: 14px;');
+console.log('%cContact: siddeshmoghavera@gmail.com', 'color: #718096; font-size: 12px;');
