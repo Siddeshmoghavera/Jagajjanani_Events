@@ -1,24 +1,24 @@
 // ===================================
-// Theme Toggle Functionality
+// Theme Toggle Functionality (NEW TOGGLE SWITCH)
 // ===================================
-const themeToggle = document.getElementById('theme-toggle');
-const themeIcon = themeToggle.querySelector('.theme-icon');
+
+const themeSwitch = document.getElementById('theme-switch');
 const html = document.documentElement;
 
-// Check for saved theme preference or default to 'light'
-const savedTheme = localStorage.getItem('theme') || 'light';
+// Load saved theme
+const savedTheme = localStorage.getItem('theme') || 'dark';
 html.setAttribute('data-theme', savedTheme);
-themeIcon.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
 
-// Toggle theme on button click
-themeToggle.addEventListener('click', () => {
-    const currentTheme = html.getAttribute('data-theme');
-    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-    
+// Set toggle position based on saved theme
+themeSwitch.checked = savedTheme === 'light';
+
+// When toggle is changed
+themeSwitch.addEventListener('change', () => {
+    const newTheme = themeSwitch.checked ? 'light' : 'dark';
     html.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
-    themeIcon.textContent = newTheme === 'dark' ? '☀️' : '🌙';
 });
+
 
 // ===================================
 // Mobile Navigation Toggle
@@ -178,12 +178,12 @@ function closePackageModal() {
 // Gallery Lightbox Functionality
 // ===================================
 const galleryImages = [
-    { src: 'images/decoration.jpg', alt: 'Birthday Celebration' },
-    { src: 'images/decoration.jpg', alt: 'Wedding Decoration' },
-    { src: 'images/decoration.jpg', alt: 'Corporate Event' },
-    { src: 'images/decoration.jpg', alt: 'Baby Shower' },
-    { src: 'images/decoration.jpg', alt: 'Anniversary' },
-    { src: 'images/decoration.jpg', alt: 'House Warming' }
+    { src: 'images/birthday.jpg', alt: 'Birthday Celebration' },
+    { src: 'images/bride.jpg', alt: ' Bride To Be Decoration' },
+    { src: 'images/corporate.jpg', alt: 'Corporate Event' },
+    { src: 'images/baby.jpg', alt: 'Baby Shower' },
+    { src: 'images/marry.jpg', alt: 'Anniversary' },
+    { src: 'images/pro.jpg', alt: 'groom to be' }
 ];
 
 let currentImageIndex = 0;

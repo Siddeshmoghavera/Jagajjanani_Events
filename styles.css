@@ -170,20 +170,94 @@ body {
     content: '';
     display: block;
 }
+/* ============================
+   NEW Theme Toggle Switch
+   ============================ */
+
+.switch {
+  position: relative;
+  height: 1.2rem;
+  width: 2.4rem;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  border-radius: 9999px;
+  background-color: rgba(100, 116, 139, 0.377);
+  transition: all .3s ease;
+}
+
+.switch:checked {
+  background-color: cyan;
+}
+
+.switch::before {
+  position: absolute;
+  content: "";
+  left: calc(1.2rem - 1.3rem);
+  top: calc(1.2rem - 1.3rem);
+  display: block;
+  height: 1.3rem;
+  width: 1.3rem;
+  cursor: pointer;
+  border: 1px solid rgba(100, 116, 139, 0.527);
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 3px 10px rgba(100, 116, 139, 0.327);
+  transition: all .3s ease;
+}
+
+.switch:hover::before {
+  box-shadow: 0 0 0px 8px rgba(0, 0, 0, .15)
+}
+
+.switch:checked:hover::before {
+  box-shadow: 0 0 0px 8px rgba(236, 72, 153, .15)
+}
+
+.switch:checked:before {
+  transform: translateX(100%);
+  border-color: white;
+}
 
 /* ===================================
    Hero Section
    =================================== */
+
 .hero {
     position: relative;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, rgb(0, 191, 255) 0%, white 100%);
-    overflow: hidden;
+    overflow: hidden; /* required for image crop */
+    background: none; /* remove old gradient */
 }
 
+/* Fullscreen transparent background image */
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;       /* fill without distortion */
+    opacity: 0.85;           /* transparency */
+    z-index: 0;              /* behind overlay + content */
+}
+
+/* Soft dark overlay for readability */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(1px);
+    z-index: 1;
+}
+
+/* Floating particles effect */
 .hero::before {
     content: '';
     position: absolute;
@@ -191,32 +265,20 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.15)"/></svg>');
     animation: float 20s linear infinite;
+    z-index: 1;
 }
 
 @keyframes float {
-    from {
-        transform: translateY(0);
-    }
-
-    to {
-        transform: translateY(-100px);
-    }
+    from { transform: translateY(0); }
+    to   { transform: translateY(-100px); }
 }
 
-.hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.2);
-}
-
+/* Hero text */
 .hero-content {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     text-align: center;
     color: white;
     padding: 2rem;
@@ -249,13 +311,11 @@ body {
         opacity: 0;
         transform: translateY(30px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
-
 /* ===================================
    Buttons
    =================================== */
@@ -965,4 +1025,51 @@ body {
     .section-title {
         font-size: 1.75rem;
     }
+}
+.loader {
+  width: 38px;
+  height: 38px;
+  display: block;
+  margin: 20px auto;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.loader::after {
+  content: '';
+  width: 38px;
+  height: 38px;
+  left: 0;
+  bottom: 0;
+  position: absolute;
+  border-radius: 50% 50% 0;
+  border: 15px solid red;
+  transform: rotate(45deg) translate(0, 0);
+  box-sizing: border-box;
+  animation: animMarker 0.4s ease-in-out infinite alternate;
+}
+
+.loader::before {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 150%;
+  width: 24px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.2);
+  animation: animShadow 0.4s ease-in-out infinite alternate;
+}
+
+@keyframes animMarker {
+  0% {transform: rotate(45deg) translate(5px, 5px);}
+  100% {transform: rotate(45deg) translate(-5px, -5px);}
+}
+
+@keyframes animShadow {
+  0% {transform: scale(0.5);}
+  100% {transform: scale(1);}
 }
